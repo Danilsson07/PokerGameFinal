@@ -1,5 +1,6 @@
 package View;
 
+import Model.Card;
 import Model.pgModel;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -37,7 +38,7 @@ public class pgView {
 	protected HBox playerBox;
 	protected HBox controlBox;
 	public BorderPane root;
-    private Label lblDeck = new Label("");
+    private Label lblDeck;
     Region spacer = new Region(); 
     
     public ArrayList<TextField> txtfields = new ArrayList<>();
@@ -51,7 +52,12 @@ public class pgView {
 	btnAsk = new Button("Players");
 	menuBox = new HBox(btnAsk);
     playerBox = new HBox();
-    controlBox = new HBox(5, lblDeck, spacer, btnShuf, btnDeal, btnQuit);
+
+
+    CardLabelView c2 = new CardLabelView();
+    c2.setDeckCard();
+
+    controlBox = new HBox(5, c2, spacer, btnShuf, btnDeal, btnQuit);
     
       
     root = new BorderPane();
@@ -119,7 +125,7 @@ public class pgView {
 		for (int i = 0; i < number; i++) {
 			PlayerPane pp = new PlayerPane();
 			pp.setPlayer(model.getPlayer(i));
-			if (y < 4) {
+			if (y < 3) {
 			players.add(pp, y, x);
 			y++;
 			} else {

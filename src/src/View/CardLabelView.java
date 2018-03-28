@@ -25,6 +25,15 @@ public class CardLabelView extends Label {
 		}
 	}
 
+	public void setDeckCard() {
+			String image = getClass().getResource("/Images/BACK6.png").toExternalForm();
+			ImageView imv = new ImageView(image);
+			imv.fitWidthProperty().bind(this.widthProperty());
+			imv.fitHeightProperty().bind(this.heightProperty());
+			imv.setPreserveRatio(true);
+			this.setGraphic(imv);
+	}
+
 	public String createFileName(Card card) {
 		String rank = card.RanktoString();
 		String suit = card.SuittoString();

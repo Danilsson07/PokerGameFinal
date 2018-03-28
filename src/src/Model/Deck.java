@@ -7,7 +7,7 @@ import java.util.Collections;
 
 public class Deck {
     private final ArrayList<Card> allCards;
-    private final SimpleIntegerProperty leftcards = new SimpleIntegerProperty();
+    public final SimpleIntegerProperty leftcards = new SimpleIntegerProperty();
 
     public Deck() {
     	this.allCards = new ArrayList<>();
@@ -21,6 +21,7 @@ public class Deck {
     public SimpleIntegerProperty getCardsRemainingProperty() {
         return leftcards;
     }
+
     public int getCardsLeft() {
     	return leftcards.get();
     }

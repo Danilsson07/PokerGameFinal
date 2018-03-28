@@ -17,7 +17,7 @@ public class PlayerPane extends VBox{
     
     public PlayerPane() {
     	super();
-        // Add child nodes
+        this.getStyleClass().add("player"); // CSS style class
 
         this.getChildren().addAll(lblPlayerName, hboxCards, lblevaluateHand, winorlose);
         
@@ -51,6 +51,7 @@ public class PlayerPane extends VBox{
     		}    		
     	}
     }
+
     public Player getPlayerPP(Player p) {
     	return player;
     }
