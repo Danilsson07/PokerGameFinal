@@ -19,8 +19,8 @@ public class pgView {
 	private pgModel model;
 	public Stage stage;
 	public Stage stage2;
-	protected Scene scene1;
-	protected Scene scene2;
+	public Scene scene1;
+	public Scene scene2;
 	public Button btnAsk;
 	public Button btnNum;
 	public Button btnPlay;
@@ -31,7 +31,7 @@ public class pgView {
 	public TextField txtplayers;
 	protected BorderPane pane1;
 	public BorderPane panepopp;
-	protected GridPane panepop;
+	public GridPane panepop;
 	protected GridPane players;
 	protected HBox menuBox;
 	protected HBox playerBox;
@@ -64,12 +64,13 @@ public class pgView {
 	label2 = new Label("How many Players joint the game??");
 	txtplayers = new TextField();
 	btnNum = new Button("Accept!");
+
 	panepop.add(label2, 0, 0);
 	panepop.add(txtplayers, 1, 0);
 	panepop.add(btnNum, 1, 1);
 	panepopp.setCenter(panepop);
 		
-	scene1 = new Scene(root, 350, 130);
+	scene1 = new Scene(root);
 	scene2 = new Scene(panepopp);
 		
 	stage2 = new Stage();

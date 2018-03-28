@@ -64,6 +64,7 @@ public class pgController {
 			 }
 			 model.addPlayers(number);
 			 view.stage2.close();
+			 view.panepopp.setCenter(view.panepop);
 			 view.stage.close();
 			 view.root.setCenter(view.createPlayerPane(number));
 			 view.stage.show();
