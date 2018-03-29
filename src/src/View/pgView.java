@@ -56,7 +56,6 @@ public class pgView {
 
     CardLabelView c2 = new CardLabelView();
     c2.setDeckCard();
-
     controlBox = new HBox(5, c2, spacer, btnShuf, btnDeal, btnQuit);
     
       
