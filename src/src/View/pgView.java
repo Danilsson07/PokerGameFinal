@@ -2,6 +2,7 @@ package View;
 
 import Model.Card;
 import Model.pgModel;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -38,7 +39,7 @@ public class pgView {
 	protected HBox playerBox;
 	protected HBox controlBox;
 	public BorderPane root;
-    private Label lblDeck;
+    private Label pgTitel;
     Region spacer = new Region(); 
     
     public ArrayList<TextField> txtfields = new ArrayList<>();
@@ -48,7 +49,9 @@ public class pgView {
 	public pgView(Stage stage, pgModel model) {
 	this.stage = stage;
 	this.model = model;
-	
+
+	pgTitel = new Label("Poker Game");
+	pgTitel.setId("titel");
 	btnAsk = new Button("Players");
     playerBox = new HBox();
 
@@ -56,16 +59,23 @@ public class pgView {
     CardLabelView c2 = new CardLabelView();
     c2.setDeckCard();
     controlBox = new HBox(5, c2, spacer, btnShuf, btnDeal, btnAsk);
-    
-      
+    controlBox.setId("controlBox");
+    btnShuf.setId("Shuffel");
+    btnDeal.setId("Deal");
+    btnAsk.setId("ask");
+    controlBox.setAlignment(Pos.CENTER);
+    menuBox = new HBox(pgTitel);
+    menuBox.setAlignment(Pos.CENTER);
+
+
     root = new BorderPane();
-    //root.setTop(menuBox);
+    root.setTop(menuBox);
     root.setCenter(playerBox);
     root.setBottom(controlBox);
 
     panepopp = new BorderPane();
-
-	label2 = new Label("How many Players joint the game??");
+    panepopp.setStyle("-fx-background-image:url(\"../Images/scene2.png\");");
+    label2 = new Label("How many Players joint the game??");
 	txtplayers = new TextField();
 	btnNum = new Button("Accept!");
 
@@ -73,10 +83,12 @@ public class pgView {
 	panepop.add(label2, 0, 0);
 	panepop.add(txtplayers, 1, 0);
 	panepop.add(btnNum, 1, 1);
+	panepop.setAlignment(Pos.CENTER);
 	panepopp.setCenter(panepop);
+
 		
 	scene1 = new Scene(root);
-	scene2 = new Scene(panepopp);
+	scene2 = new Scene(panepopp,500,450);
 		
 	stage2 = new Stage();
 	stage2.setScene(scene2);
@@ -103,6 +115,7 @@ public class pgView {
 			pane.add(txtfields.get(i), 1, i);			
 		}
 		pane.add(btnPlay, 1, 11);
+		pane.setAlignment(Pos.CENTER);
 		return pane;
 	}
 	

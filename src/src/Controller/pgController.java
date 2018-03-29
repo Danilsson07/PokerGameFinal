@@ -6,6 +6,7 @@ import Model.Player;
 import Model.pgModel;
 import View.*;
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;

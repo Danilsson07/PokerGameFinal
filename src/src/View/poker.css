@@ -13,7 +13,6 @@
 }
 
 .player {
-
     /*-fx-background-color: linear-gradient(#2A5058, #61a2b1);*/
     -fx-padding: 5.0px;
     -fx-border-color: linear-gradient(#ffffff, #ffffff);
@@ -21,58 +20,29 @@
     -fx-alignment: center;
 }
 
-#controlArea {
+#controlBox {
     -fx-spacing: 15.0px;
-
-    -fx-border-color: linear-gradient(#2A5058, #61a2b1);
+    /*-fx-background-image:url("../Images/PokerGameFinaControlBoxl.jpg");*/
+    -fx-background-size: cover;
+   /* -fx-border-color: linear-gradient(#2A5058, #61a2b1);*/
     -fx-border-width: 2.0px;
     -fx-padding:5.9px;
     -fx-alignment: center;
-    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
 }
-.button1{
 
-    -fx-background-color:
-            #090a0c,
-            linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
-            linear-gradient(#20262b, #191d22),
-            radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
-    -fx-background-radius: 5,4,3,5;
-    -fx-background-insets: 0,1,2,0;
-    -fx-text-fill: white;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
-    -fx-font-family: "Arial";
-    -fx-text-fill: linear-gradient(white, #d0d0d0);
-    -fx-font-size: 12px;
-    -fx-padding: 10 20 10 20;
-    -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.9) , 1, 0.0 , 0 , 1 );
-
-
-}
-.button1:hover {
-    -fx-background-color: linear-gradient(#191d22, #FFD700);
-}
-.button1:pressed {
-    -fx-padding: 10 15 13 15;
-    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
-
-}
-.button2{
-    -fx-background-color: linear-gradient(#ff5400, #be1d00);
+.button{
+    -fx-background-color: linear-gradient(#696969, #808080);
     -fx-background-radius:5,4,3,5;
     -fx-background-insets: 0,1,2,0;
     -fx-text-fill: white;
     -fx-padding: 10 20 10 20;
+    -fx-font-family: "Courier New";
 }
-.button2:hover {
-    -fx-background-color:
-            linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
-            #9d4024,
-            #d86e3a,
-            radial-gradient(center 50% 50%, radius 100%, #ea7f4b, #c54e2c);
+.button:hover {
+    -fx-background-color: linear-gradient(#696969,#000000);
 
 }
-.button2:pressed {
+.button:pressed {
     -fx-padding: 10 15 13 15;
     -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
 }
@@ -114,18 +84,22 @@
 }
 
 .root{
+    -fx-background-image:url("../Images/PokerGameFinalBackground.jpg");
+    -fx-background-size: cover;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
     -fx-font-size: 16pt;
     -fx-font-family: "Courier New";
-    -fx-base: #009933;
-    -fx-box-shadow: inset 0 10 1000px black;
-    /*-fx-background-image: url("Image/PokerGameFinalBackground.jpeg");*/
-    -fx-background-repeat: stretch;
-    -fx-background-size: 900 506;
-    -fx-background-position: center center;
-    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
-
 }
 
+#titel{
+    -fx-font-size: 25px;
+  	-fx-alignment: center;
+}
+
+.scene2 {
+    -fx-background-image:url("../Images/scene2.png");
+    -fx-background-size: cover;
+}
 /*
 
 #009933
