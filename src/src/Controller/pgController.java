@@ -6,6 +6,7 @@ import Model.Player;
 import Model.pgModel;
 import View.*;
 import javafx.application.Platform;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -17,13 +18,7 @@ public class pgController {
 	 public pgController(pgModel model, pgView view) {
 		 this.model = model;
 		 this.view = view;
-		 
-		 /*view.btn0.setOnAction((event) -> {
-		 model.addValue(0);
-		 String newText = model.getValue();
-		 view.lblNumber.setText(newText);
-		 });*/
-		 
+
 		 view.btnAsk.setOnAction((event) -> {
 			 if(event.getTarget()==view.btnNum) {
 				 view.stage2.close();
@@ -64,10 +59,12 @@ public class pgController {
 			 }
 			 model.addPlayers(number);
 			 view.stage2.close();
-			 view.panepopp.setCenter(view.panepop);
+			 //view.panepopp.setCenter(view.panepop);
 			 view.stage.close();
 			 view.root.setCenter(view.createPlayerPane(number));
+
 			 view.stage.show();
+
 		 });
 		 
 		 view.btnShuf.setOnAction((event) -> {

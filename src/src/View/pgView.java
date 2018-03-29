@@ -50,26 +50,26 @@ public class pgView {
 	this.model = model;
 	
 	btnAsk = new Button("Players");
-	menuBox = new HBox(btnAsk);
     playerBox = new HBox();
 
 
     CardLabelView c2 = new CardLabelView();
     c2.setDeckCard();
-    controlBox = new HBox(5, c2, spacer, btnShuf, btnDeal, btnQuit);
+    controlBox = new HBox(5, c2, spacer, btnShuf, btnDeal, btnAsk);
     
       
     root = new BorderPane();
-    root.setTop(menuBox);
-    //root.setCenter(playerBox);
+    //root.setTop(menuBox);
+    root.setCenter(playerBox);
     root.setBottom(controlBox);
 
     panepopp = new BorderPane();
-	panepop = new GridPane();
+
 	label2 = new Label("How many Players joint the game??");
 	txtplayers = new TextField();
 	btnNum = new Button("Accept!");
 
+	panepop = new GridPane();
 	panepop.add(label2, 0, 0);
 	panepop.add(txtplayers, 1, 0);
 	panepop.add(btnNum, 1, 1);
@@ -81,13 +81,11 @@ public class pgView {
 	stage2 = new Stage();
 	stage2.setScene(scene2);
 	stage2.initModality(Modality.APPLICATION_MODAL);
-
-
-	stage.setTitle("Poker Game");
+	stage2.setTitle("Poker Game");
 	stage.setScene(scene1);
 	scene1.getStylesheets().add(
             getClass().getResource("poker.css").toExternalForm());
-	stage.show();
+	//stage.show();
 	btnPlay = new Button("Play!");
 	}
 	
