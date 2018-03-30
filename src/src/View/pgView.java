@@ -40,7 +40,8 @@ public class pgView {
 	protected HBox controlBox;
 	public BorderPane root;
     private Label pgTitel;
-    Region spacer = new Region(); 
+    Region spacer = new Region();
+	public CardLabelView c2;
     
     public ArrayList<TextField> txtfields = new ArrayList<>();
 	protected ArrayList<Label> labels = new ArrayList<>();
@@ -56,7 +57,7 @@ public class pgView {
     playerBox = new HBox();
 
 
-    CardLabelView c2 = new CardLabelView();
+    c2 = new CardLabelView();
     c2.setDeckCard();
     controlBox = new HBox(5, c2, spacer, btnShuf, btnDeal, btnAsk);
     controlBox.setId("controlBox");
@@ -144,7 +145,7 @@ public class pgView {
 				players.add(pp, y, x);
 				y++;
 			}
-			pp.updatePlayerDisplay();
+			//pp.updatePlayerDisplay();
 		}		
 		return players;
 	}

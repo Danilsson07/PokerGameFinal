@@ -73,11 +73,13 @@ public class pgController {
 		    		Player p = model.getPlayer(i);
 		    		p.discardHand();
 	        		PlayerPane pp = view.getPlayerPane(i);
-	        		pp.updatePlayerDisplay();
-	        		pp.winorlose.setText("--");
+	        		//pp.updatePlayerDisplay();
+				 	pp.updatePlayerDisplay2();
+				 	pp.winorlose.setText("--");
+				 	pp.lblevaluateHand.setText("--");
 		    	}
 
-		    	model.getDeck().shuffle(); 			 
+		    	model.getDeck().shuffle();
 		 });
 		 
 		 view.btnDeal.setOnAction((event) -> {
@@ -93,8 +95,8 @@ public class pgController {
 		        		}
 		        		p.getHand();
 		        		PlayerPane pp = view.getPlayerPane(i);
-		        		pp.updatePlayerDisplay();		        		
-		        	}		        	
+		        		pp.updatePlayerDisplay();
+		        	}
 		        	int index = 0;
 		        	for ( int i = index + 1; i < number; i++) {
 		        		PlayerPane pp1 = view.getPlayerPane(index);
