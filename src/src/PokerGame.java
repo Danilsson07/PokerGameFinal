@@ -4,6 +4,8 @@ import View.pgView;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class PokerGame extends Application{
 	pgView view;
 	pgController controller;
