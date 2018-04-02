@@ -28,7 +28,7 @@ public class pgView {
 	public Button btnPlay;
 	public Button btnShuf = new Button("Shuffle");
 	public Button btnDeal = new Button("Deal");
-	protected Button btnQuit = new Button("Quit");
+	public Button btnSW = new Button("Show Winner!");
 	protected Label label1, label2;
 	public TextField txtplayers;
 	protected BorderPane pane1;
@@ -59,7 +59,7 @@ public class pgView {
 
     c2 = new CardLabelView();
     c2.setDeckCard();
-    controlBox = new HBox(5, c2, spacer, btnShuf, btnDeal, btnAsk);
+    controlBox = new HBox(5, c2, spacer, btnShuf, btnDeal, btnSW, btnAsk);
     controlBox.setId("controlBox");
     btnShuf.setId("Shuffel");
     btnDeal.setId("Deal");

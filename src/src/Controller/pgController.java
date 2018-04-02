@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
+import java.util.concurrent.TimeUnit;
+
 public class pgController {
 	public static int number;
 	final private pgModel model;
@@ -97,30 +99,42 @@ public class pgController {
 		        		PlayerPane pp = view.getPlayerPane(i);
 		        		pp.updatePlayerDisplay();
 		        	}
-		        	int index = 0;
-		        	for ( int i = index + 1; i < number; i++) {
-		        		PlayerPane pp1 = view.getPlayerPane(index);
-        				PlayerPane pp2 = view.getPlayerPane(i);
-        				int result = model.getPlayer(index).compareTo(model.getPlayer(i));
-        				if (result == 1) {
-	        				pp1.winorlose.setText("Winner!");
-	        				pp2.winorlose.setText("Lost..");
-	        			} else if (result == -1) {
-	        				index = i;
-	        				pp1.winorlose.setText("Lost..");
-	        				pp2.winorlose.setText("Winner!");
-	        			} else if (result == 10) {
-	        				index = i;
-	        				pp1.winorlose.setText("issaDraw!");
-	        				pp2.winorlose.setText("issaDraw!");
-	        			}
-		        	}
-
 		    	} else {
 		            Alert alert = new Alert(AlertType.ERROR, "There are not enough Cards left - Please shuffle first");
 		            alert.showAndWait();
 		    	}
-		 });		 
+		 });
+
+		 view.btnSW.setOnAction((event) -> {
+             int index = 0;
+             for (int i = index + 1; i < number; i++) {
+                 PlayerPane pp1 = view.getPlayerPane(index);
+                 PlayerPane pp2 = view.getPlayerPane(i);
+                 int result = model.getPlayer(index).compareTo(model.getPlayer(i));
+                 if (result == 1) {
+                     pp1.winorlose.setText("Winner!");
+                     pp2.winorlose.setText("Lost..");
+                 } else if (result == -1) {
+                     index = i;
+                     pp1.winorlose.setText("Lost..");
+                     pp2.winorlose.setText("Winner!");
+                 } else if (result == 10) {
+                     index = i;
+                     pp1.winorlose.setText("issaDraw!");
+                     pp2.winorlose.setText("issaDraw!");
+                 }
+             }
+
+             for (int i = 0; i < number-1; i++) {
+                 PlayerPane pp = view.getPlayerPane(i);
+                 if (pp.winorlose.getText()=="Winner!") {
+                     pp.WinnerAnimation();
+                 } else {
+                     pp.LoserAnimation();
+                 }
+             }
+
+         });
 
 		 view.getStage().setOnCloseRequest((event) -> {
 		 view.stop();
