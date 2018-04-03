@@ -75,7 +75,7 @@ public class pgView {
     root.setBottom(controlBox);
 
     panepopp = new BorderPane();
-    panepopp.setStyle("-fx-background-image:url(\"../Images/scene2.png\");");
+   // panepopp.setStyle("-fx-background-image:url(\"../Images/scene2.png\");");
     label2 = new Label("How many Players joint the game??");
 	txtplayers = new TextField();
 	btnNum = new Button("Accept!");
@@ -90,6 +90,7 @@ public class pgView {
 		
 	scene1 = new Scene(root);
 	scene2 = new Scene(panepopp,500,450);
+	scene2.getStylesheets().add(getClass().getResource("poker2.css").toExternalForm());
 		
 	stage2 = new Stage();
 	stage2.setScene(scene2);
@@ -100,7 +101,13 @@ public class pgView {
             getClass().getResource("poker.css").toExternalForm());
 	//stage.show();
 	btnPlay = new Button("Play!");
+		panepopp.setStyle("-fx-background-colour: #ff5555; ");
+		panepop.setStyle("-fx-background-colour: #f35544; ");
+
+
 	}
+
+
 	
 	public GridPane createTF(int number) {
 		for (int i = 0; i < number; i++) {
@@ -146,7 +153,7 @@ public class pgView {
 				y++;
 			}
 			//pp.updatePlayerDisplay();
-		}		
+		}
 		return players;
 	}
 	 
