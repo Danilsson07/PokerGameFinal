@@ -10,7 +10,7 @@ public class PokerGame extends Application{
 	pgView view;
 	pgController controller;
 	pgModel model;
-	 
+	 //test
 	 public static void main(String[] args) {
 	 launch(args);
 	 }
