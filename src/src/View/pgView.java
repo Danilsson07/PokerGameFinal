@@ -42,44 +42,43 @@ public class pgView {
     private Label pgTitel;
     Region spacer = new Region();
 	public CardLabelView c2;
-    
+
     public ArrayList<TextField> txtfields = new ArrayList<>();
 	protected ArrayList<Label> labels = new ArrayList<>();
-	protected ArrayList<PlayerPane> pps = new ArrayList<>();
-		 
+
 	public pgView(Stage stage, pgModel model) {
 	this.stage = stage;
 	this.model = model;
 
+
 	pgTitel = new Label("Poker Game");
 	pgTitel.setId("titel");
+
+
 	btnAsk = new Button("Players");
     playerBox = new HBox();
 
-
+	//Creating Deck
     c2 = new CardLabelView();
     c2.setDeckCard();
+
+    //Creating controlBox and menubox, setting both to the center of the stage
     controlBox = new HBox(5, c2, spacer, btnShuf, btnDeal, btnSW, btnAsk);
-    controlBox.setId("controlBox");
-    btnShuf.setId("Shuffel");
-    btnDeal.setId("Deal");
-    btnAsk.setId("ask");
     controlBox.setAlignment(Pos.CENTER);
     menuBox = new HBox(pgTitel);
     menuBox.setAlignment(Pos.CENTER);
 
-
+	//creating BorderPane for the maingame and setting other views
     root = new BorderPane();
     root.setTop(menuBox);
     root.setCenter(playerBox);
     root.setBottom(controlBox);
 
+	//creating the start menu
     panepopp = new BorderPane();
-   // panepopp.setStyle("-fx-background-image:url(\"../Images/scene2.png\");");
     label2 = new Label("How many Players joint the game??");
 	txtplayers = new TextField();
 	btnNum = new Button("Accept!");
-
 	panepop = new GridPane();
 	panepop.add(label2, 0, 0);
 	panepop.add(txtplayers, 1, 0);
@@ -87,28 +86,26 @@ public class pgView {
 	panepop.setAlignment(Pos.CENTER);
 	panepopp.setCenter(panepop);
 
-		
+	// Create the scene1 (maingame) using our layout; then display it
 	scene1 = new Scene(root);
+	scene1.getStylesheets().add(getClass().getResource("poker.css").toExternalForm());
+	stage.setScene(scene1);
+
+	// Create the scene2 (startmenu) using our layout; then display it
 	scene2 = new Scene(panepopp,500,450);
 	scene2.getStylesheets().add(getClass().getResource("poker2.css").toExternalForm());
-		
 	stage2 = new Stage();
 	stage2.setScene(scene2);
 	stage2.initModality(Modality.APPLICATION_MODAL);
 	stage2.setTitle("Poker Game");
-	stage.setScene(scene1);
-	scene1.getStylesheets().add(
-            getClass().getResource("poker.css").toExternalForm());
-	//stage.show();
+
+
 	btnPlay = new Button("Play!");
-		panepopp.setStyle("-fx-background-colour: #ff5555; ");
-		panepop.setStyle("-fx-background-colour: #f35544; ");
 
 
 	}
 
-
-	
+	//Creates the Labels and text field to write the players name
 	public GridPane createTF(int number) {
 		for (int i = 0; i < number; i++) {
 			txtfields.add(new TextField("Player "+(i+1)));			
@@ -135,7 +132,8 @@ public class pgView {
 	public PlayerPane getPlayerPane(int i) {
 		return (PlayerPane) players.getChildren().get(i);
 	}
-	
+
+	//Creates the Playerpanes and put it in a gridpane
 	public GridPane createPlayerPane(int number) {
 		players = new GridPane();
 		int y = 0;
@@ -152,7 +150,6 @@ public class pgView {
 				players.add(pp, y, x);
 				y++;
 			}
-			//pp.updatePlayerDisplay();
 		}
 		return players;
 	}

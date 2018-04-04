@@ -22,6 +22,8 @@ public class pgController {
 		 this.model = model;
 		 this.view = view;
 
+
+
 		 view.btnAsk.setOnAction((event) -> {
 			 if(event.getTarget()==view.btnNum) {
 				 view.stage2.close();
