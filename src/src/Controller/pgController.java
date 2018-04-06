@@ -25,11 +25,9 @@ public class pgController {
 
 
 		 view.btnAsk.setOnAction((event) -> {
-			 if(event.getTarget()==view.btnNum) {
-				 view.stage2.close();
-			 } else {
-				 view.stage2.showAndWait();
-			 }
+			 view.stage.close();
+			 view.stage2.showAndWait();
+
 		 });
 		 
 		 view.btnNum.setOnAction((event) -> {
@@ -41,21 +39,25 @@ public class pgController {
 					 numeric = false;
 				 }
 				 if(numeric) {
-				 if (Integer.parseInt(view.txtplayers.getText()) <= 10) {
+				 if (Integer.parseInt(view.txtplayers.getText()) <= 9) {
 				 view.stage2.close();
-				 view.panepopp.setCenter(view.createTF(number));
-				 view.stage2.showAndWait();
+				 model.playername.clear();
+				 model.players.clear();
+				 model.getDeck().shuffle();
+				 view.txtfields.clear();
+				 view.panepopp2.setCenter(view.createTF(number));
+				 view.stage3.show();
 				 } else {
-					 Alert alert = new Alert(AlertType.ERROR, "Input should be a number between 1 - 10");
+					 Alert alert = new Alert(AlertType.ERROR, "Input should be a number between 1 - 9");
 			            alert.showAndWait();
 				 }
 				 } else {
-					 Alert alert = new Alert(AlertType.ERROR, "Input should be a number between 1 - 10");
+					 Alert alert = new Alert(AlertType.ERROR, "Input should be a number between 1 - 9");
 			            alert.showAndWait();
 				 }
 			 } else {
-				 view.stage2.showAndWait();
-			 }			 			 
+			 	//iew.stage3.showAndWait();
+			 }
 		 });
 		 
 		 view.btnPlay.setOnAction((event) -> {
@@ -63,11 +65,9 @@ public class pgController {
 				 model.playername.add(view.txtfields.get(i).getText());
 			 }
 			 model.addPlayers(number);
-			 view.stage2.close();
-			 //view.panepopp.setCenter(view.panepop);
+			 view.stage3.close();
 			 view.stage.close();
 			 view.root.setCenter(view.createPlayerPane(number));
-
 			 view.stage.show();
 
 		 });
@@ -100,6 +100,7 @@ public class pgController {
 		        		p.getHand();
 		        		PlayerPane pp = view.getPlayerPane(i);
 		        		pp.updatePlayerDisplay();
+		        		pp.lblevaluateHand.setText("--");
 		        	}
 		    	} else {
 		            Alert alert = new Alert(AlertType.ERROR, "There are not enough Cards left - Please shuffle first");
@@ -127,7 +128,7 @@ public class pgController {
                  }
              }
 
-             for (int i = 0; i < number-1; i++) {
+             for (int i = 0; i < number; i++) {
                  PlayerPane pp = view.getPlayerPane(i);
                  if (pp.winorlose.getText()=="Winner!") {
                      pp.WinnerAnimation();

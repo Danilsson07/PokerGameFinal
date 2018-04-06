@@ -10,7 +10,7 @@ public class pgModel {
 	private pgController controller;
     public ArrayList<String> playername = new ArrayList<>();
 	
-	protected ArrayList<Player> players;
+	public ArrayList<Player> players;
 	private Deck deck;
 	
 	public pgModel() {

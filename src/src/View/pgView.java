@@ -21,8 +21,10 @@ public class pgView {
 	private pgModel model;
 	public Stage stage;
 	public Stage stage2;
+	public Stage stage3;
 	public Scene scene1;
 	public Scene scene2;
+	public Scene scene3;
 	public Button btnAsk;
 	public Button btnNum;
 	public Button btnPlay;
@@ -33,8 +35,9 @@ public class pgView {
 	public TextField txtplayers;
 	protected BorderPane pane1;
 	public BorderPane panepopp;
+	public BorderPane panepopp2;
 	public GridPane panepop;
-	protected GridPane players;
+	public GridPane players;
 	protected HBox menuBox;
 	protected HBox playerBox;
 	protected HBox controlBox;
@@ -98,6 +101,15 @@ public class pgView {
 	stage2.setScene(scene2);
 	stage2.initModality(Modality.APPLICATION_MODAL);
 	stage2.setTitle("Poker Game");
+
+		// Create the scene3 (startmenu) using our layout; then display it
+		panepopp2 = new BorderPane();
+		scene3 = new Scene(panepopp2,500,450);
+		scene3.getStylesheets().add(getClass().getResource("poker2.css").toExternalForm());
+		stage3 = new Stage();
+		stage3.setScene(scene3);
+		stage3.initModality(Modality.APPLICATION_MODAL);
+		stage3.setTitle("Poker Game");
 
 
 	btnPlay = new Button("Play!");

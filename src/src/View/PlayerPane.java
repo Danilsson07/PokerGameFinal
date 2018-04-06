@@ -152,6 +152,7 @@ public class PlayerPane extends VBox{
         for (int i = 0; i < Player.SizeH; i++) {
             CardLabelView c2 = (CardLabelView) hboxCards.getChildren().get(i);
             RotateTransition rt = new RotateTransition(Duration.millis(2000), c2);
+            rt.setAxis(Rotate.X_AXIS);
             rt.setByAngle(720);
             rt.play();
         }
