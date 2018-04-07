@@ -39,7 +39,7 @@ public class pgController {
 					 numeric = false;
 				 }
 				 if(numeric) {
-				 if (Integer.parseInt(view.txtplayers.getText()) <= 9) {
+				 if (Integer.parseInt(view.txtplayers.getText()) <= 9 && Integer.parseInt(view.txtplayers.getText()) >= 2) {
 				 view.stage2.close();
 				 model.playername.clear();
 				 model.players.clear();
@@ -48,11 +48,11 @@ public class pgController {
 				 view.panepopp2.setCenter(view.createTF(number));
 				 view.stage3.show();
 				 } else {
-					 Alert alert = new Alert(AlertType.ERROR, "Input should be a number between 1 - 9");
+					 Alert alert = new Alert(AlertType.ERROR, "Input should be a number between 2 - 9");
 			            alert.showAndWait();
 				 }
 				 } else {
-					 Alert alert = new Alert(AlertType.ERROR, "Input should be a number between 1 - 9");
+					 Alert alert = new Alert(AlertType.ERROR, "Input should be a number between 2 - 9");
 			            alert.showAndWait();
 				 }
 			 } else {
@@ -78,7 +78,9 @@ public class pgController {
 		    		p.discardHand();
 	        		PlayerPane pp = view.getPlayerPane(i);
 	        		//pp.updatePlayerDisplay();
-				 	pp.updatePlayerDisplay2();
+				 	if (model.getDeck().getCardsleft1()<52){
+						pp.updatePlayerDisplay2();
+					}
 				 	pp.winorlose.setText("--");
 				 	pp.lblevaluateHand.setText("--");
 		    	}
@@ -109,33 +111,37 @@ public class pgController {
 		 });
 
 		 view.btnSW.setOnAction((event) -> {
-             int index = 0;
-             for (int i = index + 1; i < number; i++) {
-                 PlayerPane pp1 = view.getPlayerPane(index);
-                 PlayerPane pp2 = view.getPlayerPane(i);
-                 int result = model.getPlayer(index).compareTo(model.getPlayer(i));
-                 if (result == 1) {
-                     pp1.winorlose.setText("Winner!");
-                     pp2.winorlose.setText("Lost..");
-                 } else if (result == -1) {
-                     index = i;
-                     pp1.winorlose.setText("Lost..");
-                     pp2.winorlose.setText("Winner!");
-                 } else if (result == 10) {
-                     index = i;
-                     pp1.winorlose.setText("issaDraw!");
-                     pp2.winorlose.setText("issaDraw!");
-                 }
-             }
+		 	PlayerPane test = view.getPlayerPane(0);
+		 	if (test.lblevaluateHand.getText()!="--") {
+				int index = 0;
+				for (int i = index + 1; i < number; i++) {
+					PlayerPane pp1 = view.getPlayerPane(index);
+					PlayerPane pp2 = view.getPlayerPane(i);
+					int result = model.getPlayer(index).compareTo(model.getPlayer(i));
+					if (result == 1) {
+						pp1.winorlose.setText("Winner!");
+						pp2.winorlose.setText("Lost..");
+					} else if (result == -1) {
+						index = i;
+						pp1.winorlose.setText("Lost..");
+						pp2.winorlose.setText("Winner!");
+					} else if (result == 10) {
+						index = i;
+						pp1.winorlose.setText("issaDraw!");
+						pp2.winorlose.setText("issaDraw!");
+					}
+				}
 
-             for (int i = 0; i < number; i++) {
-                 PlayerPane pp = view.getPlayerPane(i);
-                 if (pp.winorlose.getText()=="Winner!") {
-                     pp.WinnerAnimation();
-                 } else {
-                     pp.LoserAnimation();
-                 }
-             }
+				for (int i = 0; i < number; i++) {
+					PlayerPane pp = view.getPlayerPane(i);
+					if (pp.winorlose.getText() == "Winner!") {
+						pp.WinnerAnimation();
+					}
+				}
+			} else {
+				Alert alert = new Alert(AlertType.ERROR, "There is no winner yet");
+				alert.showAndWait();
+			}
 
          });
 

@@ -158,15 +158,6 @@ public class PlayerPane extends VBox{
         }
     }
 
-    public void LoserAnimation() {
-        for (int i = 0; i < Player.SizeH; i++) {
-            CardLabelView cl = (CardLabelView) hboxCards.getChildren().get(i);
-            ScaleTransition st = new ScaleTransition(Duration.millis(2000), cl);
-            st.setByX(1.5f);
-            st.setByY(1.5f);
-        }
-    }
-
     public Player getPlayerPP(Player p) {
     	return player;
     }
