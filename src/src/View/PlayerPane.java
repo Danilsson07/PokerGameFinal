@@ -27,29 +27,34 @@ public class PlayerPane extends VBox{
     public Label winorlose = new Label("--");
     private Player player;
     public pgView view;
-    
+
+    //constructor - no parameters
     public PlayerPane() {
     	super();
         this.getStyleClass().add("player"); // CSS style class
 
         this.getChildren().addAll(lblPlayerName, hboxCards, lblevaluateHand, winorlose);
         
-        VBox.setVgrow(hboxCards, Priority.ALWAYS); // On resize, expand the card area
+        VBox.setVgrow(hboxCards, Priority.ALWAYS); //resizing
         
         // Add CardLabels for the cards
         for (int i = 0; i < 5; i++) {
             Label lblCard = new CardLabelView();
-            HBox.setHgrow(lblCard, Priority.ALWAYS); //On resize, expand the cards
+            HBox.setHgrow(lblCard, Priority.ALWAYS); //resizing
             hboxCards.getChildren().add(lblCard);
         }
     }
 
+    //method to set the player
     public void setPlayer(Player player) {
     	this.player = player;
     	lblPlayerName.setText(player.getPlayerName());
     	//updatePlayerDisplay();
     }
-    
+
+    //method to update the display
+    //method will be called in the controller class for the action of the deal button
+    //place the cards for each player hbox
     public void updatePlayerDisplay() {
     	   	for (int i = 0; i < Player.SizeH; i++) {
     	   	winorlose.setText("--");
@@ -58,8 +63,9 @@ public class PlayerPane extends VBox{
 
     		CardLabelView cl = new CardLabelView();
     		cl = (CardLabelView) hboxCards.getChildren().get(i);
-    		cl.setDeckCard();
+    		cl.setDeckCard(); //set the deck cards
 
+    		//moves the cards from the buttom to the specific card places in the hbox of each player
     		    PathElement pe1 = new MoveTo(55.5, 1000);
     		    PathElement pe2 = new LineTo(55.5, 81);
 
@@ -68,18 +74,19 @@ public class PlayerPane extends VBox{
                 path.getElements().add(pe2);
 
                 PathTransition move = new PathTransition(Duration.millis(2000), path, cl);
-                //move.play();
 
+                //rotates the card to 90°
                     RotateTransition rotator = new RotateTransition(Duration.millis(1500), cl);
                     rotator.setAxis(Rotate.Y_AXIS);
                     rotator.setFromAngle(0);
                     rotator.setToAngle(-90);
-                    //rotator.play();
 
+                    //plays the animation one for one
                     SequentialTransition s = new SequentialTransition(move, rotator);
                     s.play();
 
 
+                    //set the front of the card and rotate the final 90°
                 CardLabelView finalCl = cl;
                 Card finalCard = card;
                 rotator.setOnFinished(e -> {
@@ -97,6 +104,7 @@ public class PlayerPane extends VBox{
                 }
     	}
 
+    //set the front of the card and rotate the final 90°
     	private RotateTransition rotateback (CardLabelView cl, Card card){
             cl.setCard(card);
             RotateTransition rotator2 = new RotateTransition(Duration.millis(1500), cl);
@@ -107,6 +115,7 @@ public class PlayerPane extends VBox{
             return rotator2;
         }
 
+    //set the back of the card and rotate the final 90°
     private RotateTransition rotateback2 (CardLabelView cl) {
         cl.setDeckCard();
         RotateTransition rotator2 = new RotateTransition(Duration.millis(1500), cl);
@@ -117,12 +126,13 @@ public class PlayerPane extends VBox{
         return rotator2;
     }
 
-
+    //method to update the display
+    //method will be called in the controller class for the action of the shuffle button
     public void updatePlayerDisplay2() {
         for (int i = 0; i < Player.SizeH; i++) {
             CardLabelView cl = (CardLabelView) hboxCards.getChildren().get(i);
-            //cl.setCard(card);
 
+            //let the cards disappear to the top
             PathElement pe1 = new MoveTo(55.5, 81);
             PathElement pe2 = new LineTo(55.5,-1000);
 
@@ -132,12 +142,14 @@ public class PlayerPane extends VBox{
 
             PathTransition move = new PathTransition(Duration.millis(3000), path, cl);
 
+            //rotate the card 90°
             RotateTransition rotator = new RotateTransition(Duration.millis(1500), cl);
             rotator.setAxis(Rotate.Y_AXIS);
             rotator.setFromAngle(0);
             rotator.setToAngle(-90);
             rotator.play();
 
+            //set the back of the card and rotate the final 90°
             CardLabelView finalCl = cl;
             rotator.setOnFinished(e -> {
                 RotateTransition rotator2 = rotateback2(finalCl);
@@ -148,6 +160,9 @@ public class PlayerPane extends VBox{
         }
     }
 
+    //method to update the display
+    //method will be called in the controller class for the action of the show winner button
+    //rotate the winner cards a long the y axis for 720°
     public void WinnerAnimation() {
         for (int i = 0; i < Player.SizeH; i++) {
             CardLabelView c2 = (CardLabelView) hboxCards.getChildren().get(i);

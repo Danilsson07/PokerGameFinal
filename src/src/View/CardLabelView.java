@@ -5,12 +5,15 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 public class CardLabelView extends Label {
-	
+
+	//constructor to display the card
 	public CardLabelView() {
 		super();
+		//specific css design for the card
 		this.getStyleClass().add("card");
 	}
 
+	//method to create all the cards by calling the pictures with the createfilename method
 	public void setCard(Card card) {
 		if (card != null) {
 			String fileName = createFileName(card);
@@ -25,6 +28,7 @@ public class CardLabelView extends Label {
 		}
 	}
 
+	//method to set the Deck Card by calling the picture of the backside of the card.
 	public void setDeckCard() {
 			String image = getClass().getResource("/Images/BACK6.png").toExternalForm();
 			ImageView imv = new ImageView(image);
@@ -34,6 +38,7 @@ public class CardLabelView extends Label {
 			this.setGraphic(imv);
 	}
 
+	//creates the filename string which is equal to the filename of the cards.
 	public String createFileName(Card card) {
 		String rank = card.RanktoString();
 		String suit = card.SuittoString();

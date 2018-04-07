@@ -29,7 +29,9 @@ public class pgController {
 			 view.stage2.showAndWait();
 
 		 });
-		 
+
+		 //Action if player-button is pushed. Stage which asks how many player should join the game.
+		 //Shows a Error message if the number is not between 2 and 9 or if the input isn't a integer
 		 view.btnNum.setOnAction((event) -> {
 			 if(event.getTarget()==view.btnNum) {
 				 boolean numeric = true;
@@ -56,10 +58,11 @@ public class pgController {
 			            alert.showAndWait();
 				 }
 			 } else {
-			 	//iew.stage3.showAndWait();
 			 }
 		 });
-		 
+
+		 //Action which displays for each player a textfield to define the desired name
+		 //Furthermore it creates the playerpanes
 		 view.btnPlay.setOnAction((event) -> {
 			 for (int i = 0; i < number; i++) {
 				 model.playername.add(view.txtfields.get(i).getText());
@@ -71,13 +74,17 @@ public class pgController {
 			 view.stage.show();
 
 		 });
-		 
+
+		 // Action to shuffle the deck
+		 // When cards are displayed it calls animation method to disappear the cards
+		 // when no cards are dispalyed no animations will take place
 		 view.btnShuf.setOnAction((event) -> {
 			 for (int i = 0; i < number; i++) {
 		    		Player p = model.getPlayer(i);
 		    		p.discardHand();
 	        		PlayerPane pp = view.getPlayerPane(i);
-	        		//pp.updatePlayerDisplay();
+				 	// When cards are displayed it calls animation method to disappear the cards
+				 	// when no cards are dispalyed no animations will take place
 				 	if (model.getDeck().getCardsleft1()<52){
 						pp.updatePlayerDisplay2();
 					}
@@ -87,7 +94,9 @@ public class pgController {
 
 		    	model.getDeck().shuffle();
 		 });
-		 
+
+		 //Deals 5 cards to each player with 2 animations
+		 //If there are not enough cards it displays a error message
 		 view.btnDeal.setOnAction((event) -> {
 		    	int cardsRequired = number * Player.SizeH;
 		    	Deck deck = model.getDeck();
@@ -101,15 +110,19 @@ public class pgController {
 		        		}
 		        		p.getHand();
 		        		PlayerPane pp = view.getPlayerPane(i);
+		        		//Animation mehtod
 		        		pp.updatePlayerDisplay();
 		        		pp.lblevaluateHand.setText("--");
 		        	}
+		        // Error message if not enough cards are left for the deal
 		    	} else {
 		            Alert alert = new Alert(AlertType.ERROR, "There are not enough Cards left - Please shuffle first");
 		            alert.showAndWait();
 		    	}
 		 });
 
+		 //Action for the Button which shows the winner with a text and an animation.
+		 //most important method is the compareto method which will be explained more in the specific class
 		 view.btnSW.setOnAction((event) -> {
 		 	PlayerPane test = view.getPlayerPane(0);
 		 	if (test.lblevaluateHand.getText()!="--") {
@@ -138,6 +151,7 @@ public class pgController {
 						pp.WinnerAnimation();
 					}
 				}
+			//If the dealing action is not finished or no cards are dealed an error message will be displayed
 			} else {
 				Alert alert = new Alert(AlertType.ERROR, "There is no winner yet");
 				alert.showAndWait();

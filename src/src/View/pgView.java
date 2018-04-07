@@ -53,7 +53,7 @@ public class pgView {
 	this.stage = stage;
 	this.model = model;
 
-	//wtf
+	//set the title of the programmm
 	pgTitel = new Label("Poker Game");
 	pgTitel.setId("titel");
 
@@ -61,11 +61,11 @@ public class pgView {
 	btnAsk = new Button("Players");
     playerBox = new HBox();
 
-	//Creating Deck
+	//creates the Deck
     c2 = new CardLabelView();
     c2.setDeckCard();
 
-    //Creating controlBox and menubox, setting both to the center of the stage
+    //creates the controlbox
     controlBox = new HBox(5, c2, spacer, btnShuf, btnDeal, btnSW, btnAsk);
     controlBox.setAlignment(Pos.CENTER);
     menuBox = new HBox(pgTitel);
@@ -135,12 +135,14 @@ public class pgView {
 		pane.setAlignment(Pos.CENTER);
 		return pane;
 	}
-	
+
+	//method to get the name from the the specific txtfield
 	public String getName(int number) {
 		String namefield = txtfields.get(number).getText();
 		return namefield;
 	}
-	
+
+	//method to get the specific playerpane
 	public PlayerPane getPlayerPane(int i) {
 		return (PlayerPane) players.getChildren().get(i);
 	}
