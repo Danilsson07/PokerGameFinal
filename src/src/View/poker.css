@@ -96,6 +96,10 @@
   	-fx-alignment: center;
 }
 
+#cardnum{
+    -fx-font-size: 25px;
+}
+
 
 /*
 

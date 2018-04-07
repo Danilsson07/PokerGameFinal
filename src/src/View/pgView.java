@@ -1,6 +1,6 @@
 package View;
 
-import Model.Card;
+import Model.Deck;
 import Model.pgModel;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,6 +13,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.beans.binding.Bindings;
+
 
 import java.util.ArrayList;
 
@@ -32,6 +34,7 @@ public class pgView {
 	public Button btnDeal = new Button("Deal");
 	public Button btnSW = new Button("Show Winner!");
 	protected Label label1, label2;
+	public Label cardnum;
 	public TextField txtplayers;
 	protected BorderPane pane1;
 	public BorderPane panepopp;
@@ -45,6 +48,7 @@ public class pgView {
     private Label pgTitel;
     Region spacer = new Region();
 	public CardLabelView c2;
+	public Deck deck;
 
     public ArrayList<TextField> txtfields = new ArrayList<>();
 	protected ArrayList<Label> labels = new ArrayList<>();
@@ -53,7 +57,7 @@ public class pgView {
 	this.stage = stage;
 	this.model = model;
 
-	//set the title of the programmm
+	//wtf
 	pgTitel = new Label("Poker Game");
 	pgTitel.setId("titel");
 
@@ -61,12 +65,16 @@ public class pgView {
 	btnAsk = new Button("Players");
     playerBox = new HBox();
 
-	//creates the Deck
+	//Creating Deck
     c2 = new CardLabelView();
     c2.setDeckCard();
 
-    //creates the controlbox
-    controlBox = new HBox(5, c2, spacer, btnShuf, btnDeal, btnSW, btnAsk);
+    //Creating Label for Cardsnummber
+    cardnum = new Label("52");
+    cardnum.setId("cardnum");
+
+    //Creating controlBox and menubox, setting both to the center of the stage
+    controlBox = new HBox(5,cardnum, c2, spacer, btnShuf, btnDeal, btnSW, btnAsk);
     controlBox.setAlignment(Pos.CENTER);
     menuBox = new HBox(pgTitel);
     menuBox.setAlignment(Pos.CENTER);
@@ -135,14 +143,12 @@ public class pgView {
 		pane.setAlignment(Pos.CENTER);
 		return pane;
 	}
-
-	//method to get the name from the the specific txtfield
+	
 	public String getName(int number) {
 		String namefield = txtfields.get(number).getText();
 		return namefield;
 	}
-
-	//method to get the specific playerpane
+	
 	public PlayerPane getPlayerPane(int i) {
 		return (PlayerPane) players.getChildren().get(i);
 	}

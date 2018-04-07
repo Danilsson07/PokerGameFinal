@@ -95,13 +95,14 @@ public class pgController {
 		    	model.getDeck().shuffle();
 		 });
 
-		 //Deals 5 cards to each player with 2 animations
+		 //Deals 5 cards to each player with 2 animations and changes numbers of cards in deck
 		 //If there are not enough cards it displays a error message
 		 view.btnDeal.setOnAction((event) -> {
 		    	int cardsRequired = number * Player.SizeH;
 		    	Deck deck = model.getDeck();
 		    	if (cardsRequired <= deck.getCardsleft1()) {
-		        	for (int i = 0; i < number; i++) {
+					view.cardnum.setText(Integer.toString(deck.getCardsleft1()- cardsRequired));
+					for (int i = 0; i < number; i++) {
 		        		Player p = model.getPlayer(i);
 		        		p.discardHand();
 		        		for (int j = 0; j < Player.SizeH; j++) {
