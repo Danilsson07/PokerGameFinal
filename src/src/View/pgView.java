@@ -53,7 +53,7 @@ public class pgView {
 	this.stage = stage;
 	this.model = model;
 
-
+	//wtf
 	pgTitel = new Label("Poker Game");
 	pgTitel.setId("titel");
 
